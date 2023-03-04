@@ -77,5 +77,24 @@ plt.show()
 #дополнительное задание
 
 
+def animation_sin():  
+    fig = plt.figure()
+    l, = plt.plot([], [], 'k-')  # без запятой после l не работает
+    plt.xlabel('x')
+    plt.ylabel('y')  # в едином стиле задали оси
+    plt.title('Анимированный график синуса')
+    plt.xlim(-5, 5)  
+    plt.ylim(-2, 2)
+    plt.setp(l, color='lightpink')  
+    writer = PillowWriter(fps=60)  
+    px = []  
+    py = []  
+    with writer.saving(fig, "SinAnimation.gif", 100):
+        for x in np.linspace(-5, 5, 100):  
+            px.append(x)  
+            py.append(np.sin(x))  
+            l.set_data(px, py)  
+            writer.grab_frame() 
+animation_sin()
 
 
